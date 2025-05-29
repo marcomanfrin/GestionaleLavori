@@ -6,12 +6,13 @@
       "nomeImpianto": "Linea 2",
       "schemiElettrici": 75,
       "programmazione": 50,
-      "dataAvviamento": "13-05-2025",
+      "dataAvviamento": "",
+      "note": "",
       "finito": true,
       "id": "1"
     },
     {
-      "tecnicoId": 3,
+      "tecnicoId": 1,
       "cliente": "null",
       "nomeImpianto": "null",
       "schemiElettrici": 66,
@@ -41,7 +42,7 @@
       "id": "1f6a"
     },
     {
-      "tecnicoId": 2,
+      "tecnicoId": 1,
       "cliente": "s",
       "nomeImpianto": "s",
       "schemiElettrici": 1,
@@ -49,6 +50,16 @@
       "dataAvviamento": "08-05-2025",
       "finito": false,
       "id": "81b0"
+    },
+    {
+      "tecnicoId": 1,
+      "cliente": "jjkrea",
+      "nomeImpianto": "ajkwg.e",
+      "schemiElettrici": 78,
+      "programmazione": 33,
+      "dataAvviamento": "29-05-2025",
+      "finito": false,
+      "id": "8c7a"
     }
   ],
   "tecnici": [

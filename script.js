@@ -68,6 +68,11 @@ function renderTable() {
 
   data.forEach((impianto, i) => {
     const row = document.createElement("tr");
+    row.addEventListener("click", () => {
+      if (!editMode) {
+        window.location.href = `detail.html?id=${data[i].id}`;
+      }
+    });
 
     row.innerHTML = `
       <td>${editMode ? `<select class="form-select tecnico-select">${tecnici.map(t => `<option value="${t.id}" ${t.id === impianto.tecnicoId ? "selected" : ""}>${t.nome}</option>`).join("")}</select>` : getTecnicoNameById(impianto.tecnicoId)}</td>
