@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   flatpickr("#dataAvviamentoInput", {
-  dateFormat: "d-m-Y",
+  dateFormat: "Y-m-d",
   defaultDate: new Date()
 });
 

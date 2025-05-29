@@ -1,15 +1,15 @@
 {
   "impianti": [
     {
-      "id": "9695",
       "tecnicoId": 1,
       "cliente": "cliente 1",
       "nomeImpianto": "impianto 1",
       "schemiElettrici": 0,
       "programmazione": 0,
-      "dataAvviamento": "30-06-2025",
+      "dataAvviamento": "2025-06-20",
       "note": "nota bla bla",
-      "finito": false
+      "finito": false,
+      "id": "9695"
     },
     {
       "id": "e227",
@@ -18,7 +18,7 @@
       "nomeImpianto": "impianto 2",
       "schemiElettrici": 20,
       "programmazione": 30,
-      "dataAvviamento": "26-06-2025",
+      "dataAvviamento": "2025-06-185",
       "note": "",
       "finito": false
     },
@@ -29,20 +29,9 @@
       "nomeImpianto": "impianto 5",
       "schemiElettrici": 100,
       "programmazione": 100,
-      "dataAvviamento": "30-04-2025",
+      "dataAvviamento": "2025-06-15",
       "note": "",
       "finito": true
-    },
-    {
-      "id": "2c2b",
-      "tecnicoId": 1,
-      "cliente": "cliente  x",
-      "nomeImpianto": "impianto y",
-      "schemiElettrici": 20,
-      "programmazione": 20,
-      "dataAvviamento": "07-06-2025",
-      "note": "",
-      "finito": false
     },
     {
       "id": "de92",
@@ -51,7 +40,7 @@
       "nomeImpianto": "b",
       "schemiElettrici": 80,
       "programmazione": 90,
-      "dataAvviamento": "07-08-2025",
+      "dataAvviamento": "2025-06-18",
       "note": "",
       "finito": false
     }
