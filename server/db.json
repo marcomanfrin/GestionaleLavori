@@ -15,15 +15,15 @@
   "tecnici": [
     {
       "nome": "Gianni Manfrin",
-      "id": "1"
+      "id": 1
     },
     {
       "nome": "Marco Rossi",
-      "id": "2"
+      "id": 2
     },
     {
       "nome": "Luca Bianchi",
-      "id": "3"
+      "id": 3
     }
   ]
 }
