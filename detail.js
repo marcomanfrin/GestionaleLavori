@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     await caricaDettagli();
   
     document.getElementById("modificaBtn").addEventListener("click", () => {
+      console.log("🟢 Bottone modifica cliccato");
         renderForm();
         document.getElementById("modificaBtn").style.display = "none";
         document.getElementById("salvaBtn").style.display = "inline-block";

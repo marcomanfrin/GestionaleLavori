@@ -54,17 +54,6 @@
       "dataAvviamento": "07-08-2025",
       "note": "",
       "finito": false
-    },
-    {
-      "id": "0696",
-      "tecnicoId": 4,
-      "cliente": "nn",
-      "nomeImpianto": "hah",
-      "schemiElettrici": 66,
-      "programmazione": 98,
-      "dataAvviamento": "31-05-2025",
-      "note": "",
-      "finito": false
     }
   ],
   "tecnici": [
