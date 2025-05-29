@@ -69,6 +69,11 @@ function renderDettagli() {
 function renderForm() {
   const container = document.getElementById("dettagliImpianto");
 
+  const dataAvviamento = new Date(impianto.dataAvviamento);
+  const dataAvviamentoValue = isNaN(dataAvviamento.getTime()) 
+    ? "" 
+    : dataAvviamento.toISOString().split("T")[0];
+
   container.innerHTML = `
     <div class="row g-3">
       <div class="col-12">
@@ -97,8 +102,7 @@ function renderForm() {
       </div>
       <div class="col-12">
         <label class="form-label">Data Avviamento</label>
-        <input type="date" class="form-control" id="dataAvviamento" value="${new Date(impianto.dataAvviamento).toISOString().split('T')[0]}">
-
+        <input type="date" class="form-control" id="dataAvviamento" value="${dataAvviamentoValue}">
       </div>
       <div class="col-12">
         <label class="form-label">Note</label>
