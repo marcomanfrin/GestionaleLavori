@@ -44,6 +44,12 @@ document.addEventListener("DOMContentLoaded", () => {
     addModal.hide();
     loadTable();
   });
+
+  flatpickr("#dataAvviamentoInput", {
+  dateFormat: "d-m-Y",
+  defaultDate: new Date()
+});
+
 });
 
 async function loadTable() {
@@ -65,12 +71,18 @@ function renderTable() {
       <td contenteditable="${editMode}">${impianto.nomeImpianto}</td>
       <td contenteditable="${editMode}">${impianto.schemiElettrici}</td>
       <td contenteditable="${editMode}">${impianto.programmazione}</td>
-      <td contenteditable="${editMode}">${impianto.dataAvviamento}</td>
+      <td>${editMode? `<input type="text" class="form-control flatpickr" value="${impianto.dataAvviamento}" />`: impianto.dataAvviamento}</td>
       <td><input type="checkbox" ${impianto.finito ? "checked" : ""} ${editMode ? "" : "disabled"}></td>
     `;
 
     tbody.appendChild(row);
   });
+  if (editMode) {
+  flatpickr(".flatpickr", {
+    dateFormat: "d-m-Y"
+  });
+}
+
 }
 
 async function saveChanges() {
@@ -84,7 +96,7 @@ async function saveChanges() {
       nomeImpianto: cells[2].innerText,
       schemiElettrici: parseInt(cells[3].innerText),
       programmazione: parseInt(cells[4].innerText),
-      dataAvviamento: cells[5].innerText,
+      dataAvviamento: cells[5].querySelector("input")?.value || cells[5].innerText,
       finito: cells[6].querySelector("input").checked
     };
 

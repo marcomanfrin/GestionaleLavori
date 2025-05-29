@@ -6,7 +6,7 @@
       "nomeImpianto": "Linea 2",
       "schemiElettrici": 75,
       "programmazione": 50,
-      "dataAvviamento": "18-16-2025",
+      "dataAvviamento": "13-05-2025",
       "finito": true,
       "id": "1"
     },
@@ -16,7 +16,7 @@
       "nomeImpianto": "null",
       "schemiElettrici": 66,
       "programmazione": null,
-      "dataAvviamento": "07-07-2025",
+      "dataAvviamento": "19-05-2025",
       "finito": true,
       "id": "a7c6"
     },
@@ -26,12 +26,22 @@
       "nomeImpianto": "j",
       "schemiElettrici": 77,
       "programmazione": 66,
-      "dataAvviamento": "18-06-2025",
+      "dataAvviamento": "30-04-2025",
       "finito": false,
       "id": "df9d"
+    },
+    {
+      "tecnico": "wrq",
+      "cliente": "wr",
+      "nomeImpianto": "trae",
+      "schemiElettrici": 22,
+      "programmazione": 22,
+      "dataAvviamento": "14-05-2025",
+      "finito": false,
+      "id": "1f6a"
     }
   ],
-  "tecnici":[
+  "tecnici": [
     {
       "nome": "Gianni Manfrin",
       "id": "1"
