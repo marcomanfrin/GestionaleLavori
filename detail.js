@@ -27,6 +27,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         disattivaModifica();
     });
 
+    document.getElementById("eliminaBtn").addEventListener("click", eliminaImpianto);
 });
 
 async function caricaDettagli() {
@@ -144,4 +145,25 @@ function disattivaModifica() {
   document.getElementById("salvaBtn").style.display = "none";
   document.getElementById("salvaBtn").disabled = true;
   document.getElementById("annullaBtn").style.display = "none";
+}
+
+async function eliminaImpianto() {
+  const conferma = confirm("Sei sicuro di voler eliminare questo impianto?");
+  if (!conferma) return;
+
+  try {
+    const response = await fetch(`${API_URL}/${id}`, {
+      method: "DELETE"
+    });
+
+    if (response.ok) {
+      alert("Eliminato");
+      window.location.href = "index.html";  // <-- questo dovrebbe eseguire il redirect
+    } else {
+      alert("Errore: la risposta non è OK");
+    }
+  } catch (err) {
+    alert("Errore nella fetch");
+    console.error(err);
+  }
 }

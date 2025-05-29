@@ -1,65 +1,15 @@
 {
   "impianti": [
     {
-      "tecnicoId": 1,
-      "cliente": "ACME Spa",
-      "nomeImpianto": "Linea 2",
-      "schemiElettrici": 75,
-      "programmazione": 50,
-      "dataAvviamento": "2025-05-22",
-      "note": "",
-      "finito": true,
-      "id": "1"
-    },
-    {
-      "tecnicoId": 1,
-      "cliente": "null",
-      "nomeImpianto": "null",
-      "schemiElettrici": 66,
-      "programmazione": null,
-      "dataAvviamento": "19-05-2025",
-      "finito": true,
-      "id": "a7c6"
-    },
-    {
-      "tecnicoId": 1,
-      "cliente": "m",
-      "nomeImpianto": "j",
-      "schemiElettrici": 77,
-      "programmazione": 66,
-      "dataAvviamento": "30-04-2025",
-      "finito": false,
-      "id": "df9d"
-    },
-    {
-      "tecnicoId": 1,
-      "cliente": "wr",
-      "nomeImpianto": "trae",
-      "schemiElettrici": 22,
-      "programmazione": 22,
-      "dataAvviamento": "14-05-2025",
-      "finito": false,
-      "id": "1f6a"
-    },
-    {
-      "tecnicoId": 1,
-      "cliente": "s",
-      "nomeImpianto": "s",
-      "schemiElettrici": 1,
-      "programmazione": 1,
-      "dataAvviamento": "08-05-2025",
-      "finito": false,
-      "id": "81b0"
-    },
-    {
-      "tecnicoId": 1,
-      "cliente": "jjkrea",
-      "nomeImpianto": "ajkwg.e",
-      "schemiElettrici": 78,
-      "programmazione": 33,
-      "dataAvviamento": "29-05-2025",
-      "finito": false,
-      "id": "8c7a"
+      "id": "0f28",
+      "tecnicoId": 2,
+      "cliente": "f3fw",
+      "nomeImpianto": "we",
+      "schemiElettrici": 3,
+      "programmazione": 45,
+      "dataAvviamento": "30-05-2025",
+      "note": "eww",
+      "finito": false
     }
   ],
   "tecnici": [
