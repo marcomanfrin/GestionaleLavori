@@ -16,6 +16,19 @@
     <button id="saveBtn" class="btn btn-success my-2">Salva</button>
     <button id="addBtn" class="btn btn-primary my-2">Aggiungi Nuovo</button>
 
+    <div class="row my-3">
+      <div class="col-md-6">
+        <input type="text" id="searchInput" class="form-control" placeholder="Cerca impianto o cliente...">
+      </div>
+      <div class="col-md-6">
+        <select id="finitoFilter" class="form-select">
+          <option value="all">Mostra tutti</option>
+          <option value="true">Finiti</option>
+          <option value="false">In lavorazione</option>
+        </select>
+      </div>
+    </div>
+
     <!-- TABLE -->
     <table class="table table-bordered" id="impiantiTable">
       <thead>

@@ -9,6 +9,10 @@ document.addEventListener("DOMContentLoaded", () => {
   loadTecnici();
   loadTable();
 
+  document.getElementById("searchInput").addEventListener("input", renderTable);
+  document.getElementById("finitoFilter").addEventListener("change", renderTable);
+
+
   document.getElementById("editBtn").addEventListener("click", () => {
     editMode = true;
     renderTable();
@@ -66,32 +70,51 @@ function renderTable() {
   const tbody = document.querySelector("#impiantiTable tbody");
   tbody.innerHTML = "";
 
-  data.forEach((impianto, i) => {
+  const searchText = document.getElementById("searchInput").value.toLowerCase();
+  const finitoFilter = document.getElementById("finitoFilter").value;
+
+  const filtrati = data.filter(impianto => {
+    const matchSearch =
+      impianto.cliente.toLowerCase().includes(searchText) ||
+      impianto.nomeImpianto.toLowerCase().includes(searchText);
+
+    const matchFinito =
+      finitoFilter === "all" ||
+      (finitoFilter === "true" && impianto.finito) ||
+      (finitoFilter === "false" && !impianto.finito);
+
+    return matchSearch && matchFinito;
+  });
+
+  filtrati.forEach((impianto, i) => {
     const row = document.createElement("tr");
-    row.addEventListener("click", () => {
-      if (!editMode) {
-        window.location.href = `detail.html?id=${data[i].id}`;
-      }
-    });
+
+    if (!editMode) {
+      row.addEventListener("click", () => {
+        window.location.href = `detail.html?id=${impianto.id}`;
+      });
+    }
 
     row.innerHTML = `
-      <td>${editMode ? `<select class="form-select tecnico-select">${tecnici.map(t => `<option value="${t.id}" ${t.id === impianto.tecnicoId ? "selected" : ""}>${t.nome}</option>`).join("")}</select>` : getTecnicoNameById(impianto.tecnicoId)}</td>
+      <td>${editMode ? dropdownTecnico(impianto.tecnicoId) : getTecnicoNameById(impianto.tecnicoId)}</td>
       <td contenteditable="${editMode}">${impianto.cliente}</td>
       <td contenteditable="${editMode}">${impianto.nomeImpianto}</td>
       <td contenteditable="${editMode}">${impianto.schemiElettrici}</td>
       <td contenteditable="${editMode}">${impianto.programmazione}</td>
-      <td>${editMode? `<input type="text" class="form-control flatpickr" value="${impianto.dataAvviamento}" />`: impianto.dataAvviamento}</td>
-      <td><input type="checkbox" ${impianto.finito ? "checked" : ""} ${editMode ? "" : "disabled"}></td>
+      <td>${editMode ? `<input type="text" class="form-control flatpickr" value="${impianto.dataAvviamento}" />` : impianto.dataAvviamento}</td>
+      <td>
+        <input type="checkbox" ${impianto.finito ? "checked" : ""} ${editMode ? "" : "disabled"}>
+      </td>
     `;
 
     tbody.appendChild(row);
   });
-  if (editMode) {
-  flatpickr(".flatpickr", {
-    dateFormat: "d-m-Y"
-  });
-}
 
+  if (editMode) {
+    flatpickr(".flatpickr", {
+      dateFormat: "Y-m-d"
+    });
+  }
 }
 
 async function saveChanges() {

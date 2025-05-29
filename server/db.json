@@ -10,6 +10,28 @@
       "dataAvviamento": "30-05-2025",
       "note": "eww",
       "finito": false
+    },
+    {
+      "id": "90c8",
+      "tecnicoId": 1,
+      "cliente": "a",
+      "nomeImpianto": "a",
+      "schemiElettrici": 1,
+      "programmazione": 1,
+      "dataAvviamento": "30-05-2025",
+      "note": "",
+      "finito": true
+    },
+    {
+      "id": "5f49",
+      "tecnicoId": 2,
+      "cliente": "b",
+      "nomeImpianto": "b",
+      "schemiElettrici": 2,
+      "programmazione": 2,
+      "dataAvviamento": "31-05-2025",
+      "note": "",
+      "finito": false
     }
   ],
   "tecnici": [
