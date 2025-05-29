@@ -1,4 +1,5 @@
 const API_URL = "http://localhost:3000/impianti";
+
 let data = [];
 let editMode = false;
 
@@ -12,36 +13,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.getElementById("saveBtn").addEventListener("click", saveChanges);
 
-  const addModal = new bootstrap.Modal(document.getElementById("addModal"));
-  const addForm = document.getElementById("addForm");
-
-  document.getElementById("addBtn").addEventListener("click", () => {
-    addForm.reset();
-    addModal.show();
-  });
-
-  addForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    const formData = new FormData(addForm);
+  document.getElementById("addBtn").addEventListener("click", async () => {
     const nuovo = {
-      tecnico: formData.get("tecnico"),
-      cliente: formData.get("cliente"),
-      nomeImpianto: formData.get("nomeImpianto"),
-      schemiElettrici: parseInt(formData.get("schemiElettrici")),
-      programmazione: parseInt(formData.get("programmazione")),
-      dataAvviamento: formData.get("dataAvviamento"),
-      note: formData.get("note"),
-      finito: formData.get("finito") === "on"
+      tecnico: prompt("Tecnico:"),
+      cliente: prompt("Cliente:"),
+      nomeImpianto: prompt("Nome Impianto:"),
+      schemiElettrici: parseInt(prompt("Schemi elettrici (%)")),
+      programmazione: parseInt(prompt("Programmazione (%)")),
+      dataAvviamento: prompt("Data Avviamento (DD-MM-YYYY):"),
+      finito: false
     };
-
     await fetch(API_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(nuovo)
     });
-
-    addModal.hide();
     loadTable();
   });
 });
@@ -66,7 +52,9 @@ function renderTable() {
       <td contenteditable="${editMode}">${impianto.schemiElettrici}</td>
       <td contenteditable="${editMode}">${impianto.programmazione}</td>
       <td contenteditable="${editMode}">${impianto.dataAvviamento}</td>
-      <td><input type="checkbox" ${impianto.finito ? "checked" : ""} ${editMode ? "" : "disabled"}></td>
+      <td>
+        <input type="checkbox" ${impianto.finito ? "checked" : ""} ${editMode ? "" : "disabled"}>
+      </td>
     `;
 
     tbody.appendChild(row);

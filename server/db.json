@@ -11,14 +11,38 @@
       "id": "1"
     },
     {
-      "id": "a7c6",
-      "tecnico": null,
-      "cliente": null,
-      "nomeImpianto": null,
-      "schemiElettrici": null,
+      "tecnico": "null",
+      "cliente": "null",
+      "nomeImpianto": "null",
+      "schemiElettrici": 66,
       "programmazione": null,
-      "dataAvviamento": null,
-      "finito": false
+      "dataAvviamento": "07-07-2025",
+      "finito": true,
+      "id": "a7c6"
+    },
+    {
+      "tecnico": "Gianni",
+      "cliente": "m",
+      "nomeImpianto": "j",
+      "schemiElettrici": 77,
+      "programmazione": 66,
+      "dataAvviamento": "18-06-2025",
+      "finito": false,
+      "id": "df9d"
+    }
+  ],
+  "tecnici":[
+    {
+      "nome": "Gianni Manfrin",
+      "id": "1"
+    },
+    {
+      "nome": "Marco Rossi",
+      "id": "2"
+    },
+    {
+      "nome": "Luca Bianchi",
+      "id": "3"
     }
   ]
 }
