@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.getElementById("searchInput").addEventListener("input", renderTable);
   document.getElementById("finitoFilter").addEventListener("change", renderTable);
+  document.getElementById("tecnicoFilter").addEventListener("change", renderTable);
 
   document.getElementById("tableHeader").addEventListener("click", e => {
     if (e.target.tagName === "TH" && e.target.dataset.key) {
@@ -29,15 +30,6 @@ document.addEventListener("DOMContentLoaded", () => {
       renderTable();
     }
   });
-
-
-
-  document.getElementById("editBtn").addEventListener("click", () => {
-    editMode = true;
-    renderTable();
-  });
-
-  document.getElementById("saveBtn").addEventListener("click", saveChanges);
 
   const addModal = new bootstrap.Modal(document.getElementById("addModal"));
   const addForm = document.getElementById("addForm");
@@ -91,6 +83,7 @@ function renderTable() {
 
   const searchText = document.getElementById("searchInput").value.toLowerCase();
   const finitoFilter = document.getElementById("finitoFilter").value;
+  const tecnicoFilter = document.getElementById("tecnicoFilter").value;
 
   const filtrati = data.filter(impianto => {
     const matchSearch =
@@ -101,8 +94,10 @@ function renderTable() {
       finitoFilter === "all" ||
       (finitoFilter === "true" && impianto.finito) ||
       (finitoFilter === "false" && !impianto.finito);
+      
+    const matchTecnico = tecnicoFilter === "all" || parseInt(tecnicoFilter) === impianto.tecnicoId;
 
-    return matchSearch && matchFinito;
+    return matchSearch && matchFinito && matchTecnico;
   });
 
   if (sortKey) {
@@ -168,33 +163,37 @@ function renderTable() {
   }
 }
 
-async function saveChanges() {
-  const rows = document.querySelectorAll("#impiantiTable tbody tr");
+async function loadTecnici() {
+  const res = await fetch(TECNICI_API);
+  tecnici = await res.json();
 
-  for (let i = 0; i < rows.length; i++) {
-    const cells = rows[i].children;
-    const updated = {
-      tecnicoId: parseInt(cells[0].querySelector("select")?.value || cells[0].innerText),
-      cliente: cells[1].innerText,
-      nomeImpianto: cells[2].innerText,
-      schemiElettrici: parseInt(cells[3].innerText),
-      programmazione: parseInt(cells[4].innerText),
-      dataAvviamento: cells[5].querySelector("input")?.value || cells[5].innerText,
-      finito: cells[6].querySelector("input").checked
-    };
-
-    await fetch(`${API_URL}/${data[i].id}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(updated)
+  // Dropdown nel modal (aggiunta impianto)
+  const tecnicoSelect = document.getElementById("tecnicoSelect");
+  if (tecnicoSelect) {
+    tecnicoSelect.innerHTML = "";
+    tecnici.forEach(t => {
+      const option = document.createElement("option");
+      option.value = t.id;
+      option.textContent = t.nome;
+      tecnicoSelect.appendChild(option);
     });
   }
 
-  editMode = false;
-  loadTable();
+  // Filtro tecnico
+  const tecnicoFilter = document.getElementById("tecnicoFilter");
+  if (tecnicoFilter) {
+    tecnicoFilter.innerHTML = `<option value="all">Tutti i tecnici</option>`;
+    tecnici.forEach(t => {
+      const option = document.createElement("option");
+      option.value = t.id;
+      option.textContent = t.nome;
+      tecnicoFilter.appendChild(option);
+    });
+  }
 }
 
-async function loadTecnici() {
+
+async function loadTecniciOld() {
   const res = await fetch(TECNICI_API);
   tecnici = await res.json();
 
@@ -225,3 +224,10 @@ function updateHeaderIcons() {
     }
   });
 }
+
+document.getElementById("resetFiltersBtn").addEventListener("click", () => {
+  document.getElementById("searchInput").value = "";
+  document.getElementById("finitoFilter").value = "all";
+  document.getElementById("tecnicoFilter").value = "all";
+  renderTable();
+});

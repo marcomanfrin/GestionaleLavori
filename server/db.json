@@ -23,15 +23,15 @@
       "finito": false
     },
     {
-      "id": "2af2",
       "tecnicoId": 1,
       "cliente": "d",
       "nomeImpianto": "d",
       "schemiElettrici": 50,
       "programmazione": 30,
-      "dataAvviamento": "10-04-2025",
-      "note": "",
-      "finito": false
+      "dataAvviamento": "",
+      "note": "bla bla bla",
+      "finito": false,
+      "id": "2af2"
     },
     {
       "id": "3fca",
