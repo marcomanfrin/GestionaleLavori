@@ -43,12 +43,24 @@ document.addEventListener("DOMContentLoaded", () => {
     e.preventDefault();
 
     const formData = new FormData(addForm);
+
+    const percentualeSchemi = parseInt(formData.get("schemiElettrici"));
+    const percentualeProgrammazione = parseInt(formData.get("programmazione"));
+
+    if (
+      isNaN(percentualeSchemi) || percentualeSchemi < 0 || percentualeSchemi > 100 ||
+      isNaN(percentualeProgrammazione) || percentualeProgrammazione < 0 || percentualeProgrammazione > 100
+    ) {
+      alert("Le percentuali devono essere numeri tra 0 e 100.");
+      return;
+    }
+
     const nuovo = {
       tecnicoId: parseInt(formData.get("tecnico")),
       cliente: formData.get("cliente"),
       nomeImpianto: formData.get("nomeImpianto"),
-      schemiElettrici: parseInt(formData.get("schemiElettrici")),
-      programmazione: parseInt(formData.get("programmazione")),
+      schemiElettrici: percentualeSchemi,
+      programmazione: percentualeProgrammazione,
       dataAvviamento: formData.get("dataAvviamento"),
       note: formData.get("note"),
       finito: formData.get("finito") === "on"
@@ -191,7 +203,6 @@ async function loadTecnici() {
     });
   }
 }
-
 
 async function loadTecniciOld() {
   const res = await fetch(TECNICI_API);
