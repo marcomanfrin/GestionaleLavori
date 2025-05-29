@@ -1,8 +1,12 @@
 const API_URL = "http://localhost:3000/impianti";
 let data = [];
 let editMode = false;
+const TECNICI_API = "http://localhost:3000/tecnici";
+let tecnici = [];
+
 
 document.addEventListener("DOMContentLoaded", () => {
+  loadTecnici();
   loadTable();
 
   document.getElementById("editBtn").addEventListener("click", () => {
@@ -25,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const formData = new FormData(addForm);
     const nuovo = {
-      tecnico: formData.get("tecnico"),
+      tecnicoId: parseInt(formData.get("tecnico")),
       cliente: formData.get("cliente"),
       nomeImpianto: formData.get("nomeImpianto"),
       schemiElettrici: parseInt(formData.get("schemiElettrici")),
@@ -66,7 +70,7 @@ function renderTable() {
     const row = document.createElement("tr");
 
     row.innerHTML = `
-      <td contenteditable="${editMode}">${impianto.tecnico}</td>
+      <td>${editMode ? `<select class="form-select tecnico-select">${tecnici.map(t => `<option value="${t.id}" ${t.id === impianto.tecnicoId ? "selected" : ""}>${t.nome}</option>`).join("")}</select>` : getTecnicoNameById(impianto.tecnicoId)}</td>
       <td contenteditable="${editMode}">${impianto.cliente}</td>
       <td contenteditable="${editMode}">${impianto.nomeImpianto}</td>
       <td contenteditable="${editMode}">${impianto.schemiElettrici}</td>
@@ -91,7 +95,7 @@ async function saveChanges() {
   for (let i = 0; i < rows.length; i++) {
     const cells = rows[i].children;
     const updated = {
-      tecnico: cells[0].innerText,
+      tecnicoId: parseInt(cells[0].querySelector("select")?.value || cells[0].innerText),
       cliente: cells[1].innerText,
       nomeImpianto: cells[2].innerText,
       schemiElettrici: parseInt(cells[3].innerText),
@@ -109,4 +113,23 @@ async function saveChanges() {
 
   editMode = false;
   loadTable();
+}
+
+async function loadTecnici() {
+  const res = await fetch(TECNICI_API);
+  tecnici = await res.json();
+
+  const tecnicoSelect = document.getElementById("tecnicoSelect");
+  tecnicoSelect.innerHTML = ""; // pulisce eventuali vecchie opzioni
+  tecnici.forEach(t => {
+    const option = document.createElement("option");
+    option.value = t.id;
+    option.textContent = t.nome;
+    tecnicoSelect.appendChild(option);
+  });
+}
+
+function getTecnicoNameById(id) {
+  const tecnico = tecnici.find(t => t.id === id);
+  return tecnico ? tecnico.nome : "Sconosciuto";
 }

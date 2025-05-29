@@ -1,7 +1,7 @@
 {
   "impianti": [
     {
-      "tecnico": "Gianni Manfrin",
+      "tecnicoId": 1,
       "cliente": "ACME Spa",
       "nomeImpianto": "Linea 2",
       "schemiElettrici": 75,
@@ -11,7 +11,7 @@
       "id": "1"
     },
     {
-      "tecnico": "null",
+      "tecnicoId": 3,
       "cliente": "null",
       "nomeImpianto": "null",
       "schemiElettrici": 66,
@@ -21,7 +21,7 @@
       "id": "a7c6"
     },
     {
-      "tecnico": "Gianni",
+      "tecnicoId": 1,
       "cliente": "m",
       "nomeImpianto": "j",
       "schemiElettrici": 77,
@@ -31,7 +31,7 @@
       "id": "df9d"
     },
     {
-      "tecnico": "wrq",
+      "tecnicoId": 1,
       "cliente": "wr",
       "nomeImpianto": "trae",
       "schemiElettrici": 22,
@@ -39,20 +39,30 @@
       "dataAvviamento": "14-05-2025",
       "finito": false,
       "id": "1f6a"
+    },
+    {
+      "tecnicoId": 2,
+      "cliente": "s",
+      "nomeImpianto": "s",
+      "schemiElettrici": 1,
+      "programmazione": 1,
+      "dataAvviamento": "08-05-2025",
+      "finito": false,
+      "id": "81b0"
     }
   ],
   "tecnici": [
     {
       "nome": "Gianni Manfrin",
-      "id": "1"
+      "id": 1
     },
     {
       "nome": "Marco Rossi",
-      "id": "2"
+      "id": 2
     },
     {
       "nome": "Luca Bianchi",
-      "id": "3"
+      "id": 3
     }
   ]
 }
