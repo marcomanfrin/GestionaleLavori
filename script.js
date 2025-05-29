@@ -3,6 +3,8 @@ let data = [];
 let editMode = false;
 const TECNICI_API = "http://localhost:3000/tecnici";
 let tecnici = [];
+let sortKey = null;
+let sortAsc = true;
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -11,6 +13,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.getElementById("searchInput").addEventListener("input", renderTable);
   document.getElementById("finitoFilter").addEventListener("change", renderTable);
+
+  document.getElementById("tableHeader").addEventListener("click", e => {
+    if (e.target.tagName === "TH" && e.target.dataset.key) {
+      const newKey = e.target.dataset.key;
+
+      if (sortKey === newKey) {
+        sortAsc = !sortAsc;
+      } else {
+        sortKey = newKey;
+        sortAsc = true;
+      }
+
+      updateHeaderIcons();
+      renderTable();
+    }
+  });
+
 
 
   document.getElementById("editBtn").addEventListener("click", () => {
@@ -86,6 +105,38 @@ function renderTable() {
     return matchSearch && matchFinito;
   });
 
+  if (sortKey) {
+    filtrati.sort((a, b) => {
+      let valA = a[sortKey];
+      let valB = b[sortKey];
+
+      // Tecnico: confronta su nome
+      if (sortKey === "tecnicoId") {
+        valA = getTecnicoNameById(valA).toLowerCase();
+        valB = getTecnicoNameById(valB).toLowerCase();
+      }
+
+      // Booleano: true > false
+      if (typeof valA === "boolean") {
+        return sortAsc ? (valA === valB ? 0 : valA ? -1 : 1) : (valA === valB ? 0 : valA ? 1 : -1);
+      }
+
+      // Data: confronta come Date
+      if (sortKey === "dataAvviamento") {
+        valA = new Date(valA);
+        valB = new Date(valB);
+      }
+
+      // Stringa
+      if (typeof valA === "string") {
+        return sortAsc ? valA.localeCompare(valB) : valB.localeCompare(valA);
+      }
+
+      // Numerico
+      return sortAsc ? valA - valB : valB - valA;
+    });
+  }
+
   filtrati.forEach((impianto, i) => {
     const row = document.createElement("tr");
 
@@ -160,4 +211,17 @@ async function loadTecnici() {
 function getTecnicoNameById(id) {
   const tecnico = tecnici.find(t => t.id === id);
   return tecnico ? tecnico.nome : "Sconosciuto";
+}
+
+function updateHeaderIcons() {
+  const ths = document.querySelectorAll("#tableHeader th");
+  ths.forEach(th => {
+    const key = th.dataset.key;
+    if (key === sortKey) {
+      const arrow = sortAsc ? " ▲" : " ▼";
+      th.textContent = th.dataset.label + arrow;
+    } else {
+      th.textContent = th.dataset.label;
+    }
+  });
 }

@@ -1,17 +1,6 @@
 {
   "impianti": [
     {
-      "id": "0f28",
-      "tecnicoId": 2,
-      "cliente": "f3fw",
-      "nomeImpianto": "we",
-      "schemiElettrici": 3,
-      "programmazione": 45,
-      "dataAvviamento": "30-05-2025",
-      "note": "eww",
-      "finito": false
-    },
-    {
       "id": "90c8",
       "tecnicoId": 1,
       "cliente": "a",
@@ -30,6 +19,28 @@
       "schemiElettrici": 2,
       "programmazione": 2,
       "dataAvviamento": "31-05-2025",
+      "note": "",
+      "finito": false
+    },
+    {
+      "id": "2af2",
+      "tecnicoId": 1,
+      "cliente": "d",
+      "nomeImpianto": "d",
+      "schemiElettrici": 50,
+      "programmazione": 30,
+      "dataAvviamento": "10-04-2025",
+      "note": "",
+      "finito": false
+    },
+    {
+      "id": "3fca",
+      "tecnicoId": 1,
+      "cliente": "c",
+      "nomeImpianto": "c",
+      "schemiElettrici": 20,
+      "programmazione": 50,
+      "dataAvviamento": "29-05-2025",
       "note": "",
       "finito": false
     }
