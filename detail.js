@@ -8,22 +8,25 @@ let impianto;
 let tecnici = [];
 
 document.addEventListener("DOMContentLoaded", async () => {
-  await caricaDettagli();
+    await caricaDettagli();
+  
+    document.getElementById("modificaBtn").addEventListener("click", () => {
+        renderForm();
+        document.getElementById("modificaBtn").style.display = "none";
+        document.getElementById("salvaBtn").style.display = "inline-block";
+        document.getElementById("salvaBtn").disabled = false;
+        document.getElementById("annullaBtn").style.display = "inline-block";
+    });
 
-  document.getElementById("modificaBtn").addEventListener("click", () => {
-    renderForm();
-    document.getElementById("modificaBtn").style.display = "none";
-    const salvaBtn = document.getElementById("salvaBtn");
-    salvaBtn.style.display = "inline-block";
-    salvaBtn.disabled = false; // 🔓 Abilita il bottone
-  });
-  document.getElementById("salvaBtn").addEventListener("click", async () => {
-    await salvaModifiche();
-    document.getElementById("salvaBtn").style.display = "none";
-    document.getElementById("salvaBtn").disabled = true; // 🔒 Disabilita di nuovo
-    document.getElementById("modificaBtn").style.display = "inline-block";
-  });
-  document.getElementById("salvaBtn").addEventListener("click", salvaModifiche);
+    document.getElementById("salvaBtn").addEventListener("click", async () => {
+        await salvaModifiche();
+            disattivaModifica();
+    });
+
+    document.getElementById("annullaBtn").addEventListener("click", () => {
+        disattivaModifica();
+    });
+
 });
 
 async function caricaDettagli() {
@@ -133,4 +136,12 @@ async function salvaModifiche() {
     alert("Errore durante il salvataggio.");
     console.error(err);
   }
+}
+
+function disattivaModifica() {
+  renderDettagli(); // ripristina la visualizzazione originale
+  document.getElementById("modificaBtn").style.display = "inline-block";
+  document.getElementById("salvaBtn").style.display = "none";
+  document.getElementById("salvaBtn").disabled = true;
+  document.getElementById("annullaBtn").style.display = "none";
 }
