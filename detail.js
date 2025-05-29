@@ -96,7 +96,8 @@ function renderForm() {
       </div>
       <div class="col-12">
         <label class="form-label">Data Avviamento</label>
-        <input type="date" class="form-control" id="dataAvviamento" value="${impianto.dataAvviamento}">
+        <input type="date" class="form-control" id="dataAvviamento" value="${new Date(impianto.dataAvviamento).toISOString().split('T')[0]}">
+
       </div>
       <div class="col-12">
         <label class="form-label">Note</label>

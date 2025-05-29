@@ -1,17 +1,5 @@
 {
-  "impianti": [
-    {
-      "tecnicoId": 1,
-      "cliente": "x",
-      "nomeImpianto": "impianto x",
-      "schemiElettrici": 50,
-      "programmazione": 30,
-      "dataAvviamento": "2025-06-29",
-      "note": "nota",
-      "finito": false,
-      "id": "498a"
-    }
-  ],
+  "impianti": [],
   "tecnici": [
     {
       "nome": "Gianni Manfrin",
