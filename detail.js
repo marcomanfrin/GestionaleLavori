@@ -122,7 +122,9 @@ async function salvaModifiche() {
 
   // === Validazione ===
   if (!cliente || !nomeImpianto) {
-    alert("Cliente e nome impianto sono obbligatori.");
+    //alert("Cliente e nome impianto sono obbligatori.");
+    mostraToast("Cliente e nome impianto sono obbligatori.", "danger");
+
     return;
   }
 
@@ -130,12 +132,14 @@ async function salvaModifiche() {
     isNaN(schemiElettrici) || schemiElettrici < 0 || schemiElettrici > 100 ||
     isNaN(programmazione) || programmazione < 0 || programmazione > 100
   ) {
-    alert("Le percentuali devono essere numeri tra 0 e 100.");
+    //alert("Le percentuali devono essere numeri tra 0 e 100.");
+    mostraToast("Le percentuali devono essere numeri tra 0 e 100.", "danger");
     return;
   }
 
   if (!dataAvviamento) {
-    alert("La data di avviamento è obbligatoria.");
+    //alert("La data di avviamento è obbligatoria.");
+    mostraToast("La data di avviamento è obbligatoria.", "danger");
     return;
   }
 
@@ -165,7 +169,8 @@ async function salvaModifiche() {
     document.getElementById("modificaBtn").style.display = "inline-block";
     renderDettagli();
   } catch (err) {
-    alert("Errore durante il salvataggio.");
+    //alert("Errore durante il salvataggio.");
+    mostraToast("Errore durante il salvataggio.", "danger");
     console.error(err);
   }
 }
@@ -194,7 +199,8 @@ async function salvaModificheOld() {
     document.getElementById("modificaBtn").style.display = "inline-block";
     renderDettagli();
   } catch (err) {
-    alert("Errore durante il salvataggio.");
+    //alert("Errore durante il salvataggio.");
+    mostraToast("Errore durante il salvataggio.", "error");
     console.error(err);
   }
 }
@@ -217,13 +223,49 @@ async function eliminaImpianto() {
     });
 
     if (response.ok) {
-      alert("Eliminato");
+      //alert("Eliminato");
+      mostraToast("Impianto eliminato con successo.", "success");
       window.location.href = "index.html";  // <-- questo dovrebbe eseguire il redirect
     } else {
-      alert("Errore: la risposta non è OK");
+      //alert("Errore: la risposta non è OK");
+      mostraToast("Errore durante l'eliminazione dell'impianto.", "error");
     }
   } catch (err) {
-    alert("Errore nella fetch");
+    //alert("Errore nella fetch");
+    mostraToast("Errore nella fetch", "error");
     console.error(err);
   }
 }
+
+function mostraToast(messaggio, tipo = "success") {
+  const container = document.getElementById("toastContainer");
+  const id = `toast-${Date.now()}`;
+
+  // Mappa tipo → classe Bootstrap
+  const colori = {
+    success: "bg-success",
+    danger: "bg-danger",
+    error: "bg-danger",
+    warning: "bg-warning",
+    info: "bg-info"
+  };
+
+  const colore = colori[tipo] || "bg-secondary";
+
+  container.insertAdjacentHTML("beforeend", `
+    <div id="${id}" class="toast align-items-center text-white ${colore} border-0 mb-2" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="d-flex">
+        <div class="toast-body">${messaggio}</div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+      </div>
+    </div>
+  `);
+
+  const toastElement = new bootstrap.Toast(document.getElementById(id), { delay: 3000 });
+  toastElement.show();
+
+  document.getElementById(id).addEventListener("hidden.bs.toast", () => {
+    document.getElementById(id)?.remove();
+  });
+}
+

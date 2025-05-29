@@ -1,62 +1,29 @@
 {
   "impianti": [
     {
-      "id": "90c8",
       "tecnicoId": 1,
-      "cliente": "a",
-      "nomeImpianto": "a",
-      "schemiElettrici": 1,
-      "programmazione": 1,
-      "dataAvviamento": "30-05-2025",
-      "note": "",
-      "finito": true
-    },
-    {
-      "id": "5f49",
-      "tecnicoId": 2,
-      "cliente": "b",
-      "nomeImpianto": "b",
-      "schemiElettrici": 2,
-      "programmazione": 2,
-      "dataAvviamento": "31-05-2025",
-      "note": "",
-      "finito": false
-    },
-    {
-      "tecnicoId": 1,
-      "cliente": "d",
-      "nomeImpianto": "d",
+      "cliente": "x",
+      "nomeImpianto": "impianto x",
       "schemiElettrici": 50,
       "programmazione": 30,
-      "dataAvviamento": "",
-      "note": "bla bla bla",
+      "dataAvviamento": "2025-06-29",
+      "note": "nota",
       "finito": false,
-      "id": "2af2"
-    },
-    {
-      "id": "3fca",
-      "tecnicoId": 1,
-      "cliente": "c",
-      "nomeImpianto": "c",
-      "schemiElettrici": 20,
-      "programmazione": 50,
-      "dataAvviamento": "29-05-2025",
-      "note": "",
-      "finito": false
+      "id": "498a"
     }
   ],
   "tecnici": [
     {
       "nome": "Gianni Manfrin",
-      "id": 1
+      "id": "1"
     },
     {
       "nome": "Marco Rossi",
-      "id": 2
+      "id": "2"
     },
     {
       "nome": "Luca Bianchi",
-      "id": 3
+      "id": "3"
     }
   ]
 }

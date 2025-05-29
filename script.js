@@ -51,7 +51,8 @@ document.addEventListener("DOMContentLoaded", () => {
       isNaN(percentualeSchemi) || percentualeSchemi < 0 || percentualeSchemi > 100 ||
       isNaN(percentualeProgrammazione) || percentualeProgrammazione < 0 || percentualeProgrammazione > 100
     ) {
-      alert("Le percentuali devono essere numeri tra 0 e 100.");
+      //alert("Le percentuali devono essere numeri tra 0 e 100.");
+      mostraToast("Le percentuali devono essere numeri tra 0 e 100.", "warning");
       return;
     }
 
@@ -253,3 +254,35 @@ document.getElementById("resetFiltersBtn").addEventListener("click", () => {
   document.getElementById("tecnicoFilter").value = "all";
   renderTable();
 });
+
+function mostraToast(messaggio, tipo = "success") {
+  const container = document.getElementById("toastContainer");
+  const id = `toast-${Date.now()}`;
+
+  // Mappa tipo → classe Bootstrap
+  const colori = {
+    success: "bg-success",
+    danger: "bg-danger",
+    error: "bg-danger",
+    warning: "bg-warning",
+    info: "bg-info"
+  };
+
+  const colore = colori[tipo] || "bg-secondary";
+
+  container.insertAdjacentHTML("beforeend", `
+    <div id="${id}" class="toast align-items-center text-white ${colore} border-0 mb-2" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="d-flex">
+        <div class="toast-body">${messaggio}</div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+      </div>
+    </div>
+  `);
+
+  const toastElement = new bootstrap.Toast(document.getElementById(id), { delay: 3000 });
+  toastElement.show();
+
+  document.getElementById(id).addEventListener("hidden.bs.toast", () => {
+    document.getElementById(id)?.remove();
+  });
+}
