@@ -144,6 +144,17 @@ function renderTable() {
     });
   }
 
+  // Contatori
+  const totale = filtrati.length;
+  const finiti = filtrati.filter(i => i.finito).length;
+  const nonFiniti = totale - finiti;
+
+  // Mostra nel box
+  document.getElementById("totalCount").textContent = totale;
+  document.getElementById("finitiCount").textContent = finiti;
+  document.getElementById("nonFinitiCount").textContent = nonFiniti;
+
+
   filtrati.forEach((impianto, i) => {
     const row = document.createElement("tr");
 
