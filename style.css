@@ -1,0 +1,59 @@
+/* === Layout base === */
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.container {
+  flex: 1;
+}
+
+/* === Validazione === */
+.is-invalid {
+  border: 2px solid #dc3545 !important;
+  background-color: #fff0f0;
+}
+
+/* === Header === */
+header {
+  background-color: #e84e10;
+  color: white;
+  padding: 1rem 0;
+  margin-bottom: 1.5rem;
+}
+
+header h1 {
+  margin: 0;
+}
+
+header nav a {
+  color: white;
+  text-decoration: none;
+  margin: 0 0.75rem;
+}
+
+header nav a:hover {
+  text-decoration: underline;
+}
+
+/* === Footer === */
+footer {
+  background-color: #f8f9fa;
+  text-align: center;
+  color: #6c757d;
+  padding: 1rem 0;
+  border-top: 1px solid #dee2e6;
+  margin-top: auto;
+}
+
+header img {
+  border-radius: 4px;
+  object-fit: contain;
+}
+
+.logo-img {
+  background-color: white;
+  padding: 6px;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2); /* opzionale per profondità */
+}
