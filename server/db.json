@@ -1,0 +1,24 @@
+{
+  "impianti": [
+    {
+      "tecnico": "Gianni Manfrin",
+      "cliente": "ACME Spa",
+      "nomeImpianto": "Linea 2",
+      "schemiElettrici": 75,
+      "programmazione": 50,
+      "dataAvviamento": "18-16-2025",
+      "finito": true,
+      "id": "1"
+    },
+    {
+      "id": "a7c6",
+      "tecnico": null,
+      "cliente": null,
+      "nomeImpianto": null,
+      "schemiElettrici": null,
+      "programmazione": null,
+      "dataAvviamento": null,
+      "finito": false
+    }
+  ]
+}
