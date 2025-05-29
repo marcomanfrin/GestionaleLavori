@@ -111,6 +111,66 @@ function renderForm() {
 }
 
 async function salvaModifiche() {
+  const tecnicoId = parseInt(document.getElementById("tecnico").value);
+  const cliente = document.getElementById("cliente").value.trim();
+  const nomeImpianto = document.getElementById("nomeImpianto").value.trim();
+  const schemiElettrici = parseInt(document.getElementById("schemiElettrici").value);
+  const programmazione = parseInt(document.getElementById("programmazione").value);
+  const dataAvviamento = document.getElementById("dataAvviamento").value;
+  const note = document.getElementById("note").value;
+  const finito = document.getElementById("finito").checked;
+
+  // === Validazione ===
+  if (!cliente || !nomeImpianto) {
+    alert("Cliente e nome impianto sono obbligatori.");
+    return;
+  }
+
+  if (
+    isNaN(schemiElettrici) || schemiElettrici < 0 || schemiElettrici > 100 ||
+    isNaN(programmazione) || programmazione < 0 || programmazione > 100
+  ) {
+    alert("Le percentuali devono essere numeri tra 0 e 100.");
+    return;
+  }
+
+  if (!dataAvviamento) {
+    alert("La data di avviamento è obbligatoria.");
+    return;
+  }
+
+  // === Salvataggio ===
+  const updated = {
+    tecnicoId,
+    cliente,
+    nomeImpianto,
+    schemiElettrici,
+    programmazione,
+    dataAvviamento,
+    note,
+    finito
+  };
+
+  try {
+    const res = await fetch(`${API_URL}/${id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(updated)
+    });
+
+    if (!res.ok) throw new Error("Errore nella risposta del server.");
+
+    impianto = updated;
+    document.getElementById("salvaBtn").style.display = "none";
+    document.getElementById("modificaBtn").style.display = "inline-block";
+    renderDettagli();
+  } catch (err) {
+    alert("Errore durante il salvataggio.");
+    console.error(err);
+  }
+}
+
+async function salvaModificheOld() {
   const updated = {
     tecnicoId: parseInt(document.getElementById("tecnico").value),
     cliente: document.getElementById("cliente").value,
