@@ -34,15 +34,15 @@
       "finito": true
     },
     {
-      "id": "de92",
-      "tecnicoId": 3,
+      "tecnicoId": 1,
       "cliente": "a",
       "nomeImpianto": "b",
       "schemiElettrici": 80,
       "programmazione": 90,
-      "dataAvviamento": "2025-06-18",
+      "dataAvviamento": "",
       "note": "",
-      "finito": false
+      "finito": false,
+      "id": "de92"
     },
     {
       "id": "5da9",
@@ -52,6 +52,17 @@
       "schemiElettrici": 50,
       "programmazione": 20,
       "dataAvviamento": "2025-07-11",
+      "note": "",
+      "finito": false
+    },
+    {
+      "id": "d320",
+      "tecnicoId": 1,
+      "cliente": "a",
+      "nomeImpianto": "a",
+      "schemiElettrici": 1,
+      "programmazione": 1,
+      "dataAvviamento": "",
       "note": "",
       "finito": false
     }

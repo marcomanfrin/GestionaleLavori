@@ -80,7 +80,7 @@ function renderForm() {
         <label class="form-label">Tecnico</label>
         <select class="form-select" id="tecnico">
           ${tecnici
-            .map(t => `<option value="${t.id}" ${t.id === impianto.tecnicoId ? "selected" : ""}>${t.nome}</option>`)
+            .map(t => `<option value="${t.id}" ${t.id == impianto.tecnicoId ? "selected" : ""}>${t.nome}</option>`)
             .join("")}
         </select>
       </div>
@@ -140,12 +140,6 @@ async function salvaModifiche() {
   ) {
     //alert("Le percentuali devono essere numeri tra 0 e 100.");
     mostraToast("Le percentuali devono essere numeri tra 0 e 100.", "danger");
-    return;
-  }
-
-  if (!dataAvviamento) {
-    //alert("La data di avviamento è obbligatoria.");
-    mostraToast("La data di avviamento è obbligatoria.", "danger");
     return;
   }
 
