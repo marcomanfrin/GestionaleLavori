@@ -1,7 +1,7 @@
-const API_URL = "http://localhost:3000/impianti";
+const API_URL = `http://${location.hostname}:3000/impianti`;
+const TECNICI_API = `http://${location.hostname}:3000/tecnici`;
 let data = [];
 let editMode = false;
-const TECNICI_API = "http://localhost:3000/tecnici";
 let tecnici = [];
 let sortKey = null;
 let sortAsc = true;
@@ -231,7 +231,7 @@ async function loadTecniciOld() {
 }
 
 function getTecnicoNameById(id) {
-  const tecnico = tecnici.find(t => t.id === id);
+  const tecnico = tecnici.find(t => t.id == id);
   return tecnico ? tecnico.nome : "Sconosciuto";
 }
 

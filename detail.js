@@ -1,5 +1,5 @@
-const API_URL = "http://localhost:3000/impianti";
-const TECNICI_URL = "http://localhost:3000/tecnici";
+const API_URL = `http://${location.hostname}:3000/impianti`;
+const TECNICI_URL = `http://${location.hostname}:3000/tecnici`;
 
 const params = new URLSearchParams(window.location.search);
 const id = params.get("id");
@@ -49,7 +49,7 @@ async function caricaDettagli() {
 }
 
 function renderDettagli() {
-  const tecnico = tecnici.find(t => t.id === impianto.tecnicoId);
+  const tecnico = tecnici.find(t => t.id == impianto.tecnicoId);
   const container = document.getElementById("dettagliImpianto");
 
   container.innerHTML = `

@@ -51,8 +51,8 @@
   </footer>
 
   <script>
-    const API_URL = "http://localhost:3000/impianti";
-    const TECNICI_URL = "http://localhost:3000/tecnici";
+    const API_URL = `http://${location.hostname}:3000/impianti`;
+    const TECNICI_URL = `http://${location.hostname}:3000/tecnici`;
 
     let impianti = [];
     let tecnici = [];
@@ -80,7 +80,7 @@
       const conteggio = {};
       tecnici.forEach(t => conteggio[t.nome] = 0);
       impianti.forEach(i => {
-        const tecnico = tecnici.find(t => t.id === i.tecnicoId);
+        const tecnico = tecnici.find(t => t.id == i.tecnicoId);
         if (tecnico) conteggio[tecnico.nome]++;
       });
 
