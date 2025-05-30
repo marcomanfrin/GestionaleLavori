@@ -56,7 +56,7 @@ function renderDettagli() {
     <ul class="list-group">
       <li class="list-group-item"><strong>Tecnico:</strong> ${tecnico?.nome || "Sconosciuto"}</li>
       <li class="list-group-item"><strong>Cliente:</strong> ${impianto.cliente}</li>
-      <li class="list-group-item"><strong>Nome Impianto:</strong> ${impianto.nomeImpianto}</li>
+      <li class="list-group-item"><strong>Nome Lavoro:</strong> ${impianto.nomeImpianto}</li>
       <li class="list-group-item"><strong>Schemi Elettrici (%):</strong> ${impianto.schemiElettrici}</li>
       <li class="list-group-item"><strong>Programmazione (%):</strong> ${impianto.programmazione}</li>
       <li class="list-group-item"><strong>Data Avviamento:</strong> ${impianto.dataAvviamento}</li>
@@ -89,7 +89,7 @@ function renderForm() {
         <input type="text" class="form-control" id="cliente" value="${impianto.cliente}">
       </div>
       <div class="col-12">
-        <label class="form-label">Nome Impianto</label>
+        <label class="form-label">Nome Lavoro</label>
         <input type="text" class="form-control" id="nomeImpianto" value="${impianto.nomeImpianto}">
       </div>
       <div class="col-12">
@@ -128,8 +128,8 @@ async function salvaModifiche() {
 
   // === Validazione ===
   if (!cliente || !nomeImpianto) {
-    //alert("Cliente e nome impianto sono obbligatori.");
-    mostraToast("Cliente e nome impianto sono obbligatori.", "danger");
+    //alert("Cliente e nome lavoro sono obbligatori.");
+    mostraToast("Cliente e nome lavoro sono obbligatori.", "danger");
 
     return;
   }
@@ -230,11 +230,11 @@ async function eliminaImpianto() {
 
     if (response.ok) {
       //alert("Eliminato");
-      mostraToast("Impianto eliminato con successo.", "success");
+      mostraToast("Lavoro eliminato con successo.", "success");
       window.location.href = "index.html";  // <-- questo dovrebbe eseguire il redirect
     } else {
       //alert("Errore: la risposta non è OK");
-      mostraToast("Errore durante l'eliminazione dell'impianto.", "error");
+      mostraToast("Errore durante l'eliminazione del lavoro.", "error");
     }
   } catch (err) {
     //alert("Errore nella fetch");
